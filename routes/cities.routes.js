@@ -9,11 +9,7 @@ router.post("/add", verifyTokenAdmin, async (req, res) => {
     if (cityExist) {
         res.status(409).json("City alrady in existance")
     } else {
-        const newCity = new City({
-            cityName: req.body.cityName,
-            province: req.body.province,
-            country: req.body.country
-        })
+        const newCity = new City(req.body)
         try {
             const savedCity = await newCity.save();
             res.status(200).json(savedCity + "City added correctly!")

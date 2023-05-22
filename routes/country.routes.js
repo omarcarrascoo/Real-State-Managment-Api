@@ -15,10 +15,7 @@ router.post("/add", verifyTokenAdmin, async (req, res)=>{
         const {countryFlag} = req.files;
         const imageSavingPath = path.join(__dirname, '../assets/imgs/') 
         console.log(countryFlag)
-        const newCountry = new Country({
-            countryName : req.body.countryName,
-            imgRoute : countryFlag.name
-        });
+        const newCountry = new Country(req.body);
 
         if (!countryFlag) return res.status(400).json("Necesarly to upload image!")
         try {
@@ -34,14 +31,13 @@ router.post("/add", verifyTokenAdmin, async (req, res)=>{
 
 //UPDATE
 router.put("/:id", verifyTokenAuthorization, async (req, res)=>{
-    const {countryFlag} = req.files;
-    console.log(countryFlag);
-    if (!countryFlag) return res.status(400).json("Necesarly to upload image!")
+    // const {countryFlag} = req.files;
+    // console.log(countryFlag);
+    // if (!countryFlag) return res.status(400).json("Necesarly to upload image!")
     try {
-        const updatedCountry = await Country.findByIdAndUpdate(req.params.id,{$set: {
-            countryName : req.body.countryName,
-            imgRoute : countryFlag.name
-        }});
+        const updatedCountry = await Country.findByIdAndUpdate(req.params.id,{$set: 
+            req.body
+        });
 
         res.status(200).json(updatedCountry)
         
@@ -71,10 +67,17 @@ router.get("/find/:id", async (req,res)=>{
        res.status(500).json(error) 
     }
 })
+router.get("/findByName/:country", async (req,res)=>{
+    try {
+        const country = await Country.find({urlCountry: req.params.country})
+        res.status(200).json(country);
+    } catch (error) {
+       res.status(500).json(error) 
+    }
+})
 //GET ALL COUNTRIES
 router.get("/", async (req,res)=>{
     const query = req.query.new;
-    
     try {
         const countries = await Country.find()
         res.status(200).json(countries);

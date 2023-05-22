@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const fileUplode = require("express-fileupload")
 const engine = require('ejs-mate')
 const path = require('path')
+const cors = require('cors')
 const dotenv = require("dotenv").config()
 
 //ROUTES PATHS
@@ -14,11 +15,14 @@ const citiesRoutes = require ("./routes/cities.routes")
 const categoriesRoutes = require("./routes/categories.routes")
 const industrialProperty = require("./routes/industialProperties.routes")
 const clientRoutes = require("./routes/client.routes")
-
+const clientEs = require("./routes/clientEs.routes")
 
 
 //Configurations
 const app = express();
+app.use(cors({
+    origin: 'http://127.0.0.1:5173'
+}))
 app.use(express.json());
 app.use(fileUplode());
 app.use(express.static(__dirname + '/public'));
@@ -35,6 +39,7 @@ app.use("/api/cities", citiesRoutes)
 app.use("/api/categories", categoriesRoutes)
 app.use("/api/industrialProperties", industrialProperty)
 app.use("/", clientRoutes)
+app.use("/es/bienes-raices-industriales", clientEs)
 
 //CONECTION TO THE DATABASE USING MONGO
 mongoose.connect(process.env.MONGO_URI)

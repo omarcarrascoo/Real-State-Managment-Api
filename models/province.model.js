@@ -3,7 +3,13 @@ const mongoose = require("mongoose");
 const provinceSchema = new mongoose.Schema(
     {
         provinceName : {type: String, required: true, unique: true},
-        country : {type: String}
+        country : {type: String},
+        urlProvince: {type: String},
+        h1: {type: String},
+        h2: {type: String},
+        p: {type: String},
+        keyWords: {type: String},
+        longDescription: {type: String}
     },
     {timestamps: true}
 );
