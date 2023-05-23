@@ -1,6 +1,6 @@
 const express = require ("express");
 const mongoose = require("mongoose")
-const fileUplode = require("express-fileupload")
+// const fileUplode = require("express-fileupload")
 const engine = require('ejs-mate')
 const path = require('path')
 const cors = require('cors')
@@ -22,13 +22,14 @@ const clientEs = require("./routes/clientEs.routes")
 const app = express();
 app.use(cors({
     origin: 'http://127.0.0.1:5173'
+    
 }))
 app.use(express.json());
-app.use(fileUplode());
-app.use(express.static(__dirname + '/public'));
-app.set('views', path.join(__dirname, 'views') )
-app.engine('ejs', engine);
-app.set('view engine', 'ejs')
+// app.use(fileUplode());
+// app.use(express.static(__dirname + '/public'));
+// app.set('views', path.join(__dirname, 'views') )
+// app.engine('ejs', engine);
+// app.set('view engine', 'ejs')
 
 //ROUTES
 app.use("/api/auth", authRoutes)

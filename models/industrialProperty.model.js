@@ -26,7 +26,7 @@ const industrialPropertySchema = new mongoose.Schema(
         descripcionLarga: {type: String},
         videos: {type: String},
         posicionListado: {type: String},
-        añoConstruccion: {type: Number},
+        anoConstruccion: {type: Number},
         usoSuelo: {type: String},
         m2Terreno: {type: Number},
         m2Construcion: {type: Number},

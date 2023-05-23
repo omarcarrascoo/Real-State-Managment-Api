@@ -6,11 +6,12 @@ const IndustrialProperty = require("../models/industrialProperty.model")
 const router = require("express").Router()
 
 const { addIndustiralProperty } = require("../controllers/industrialProperty.controllers")
+const uploadFile = require("../middleware/uploadImage")
 
 
 
 //CREATE
-router.post("/add", verifyTokenAdmin, addIndustiralProperty)
+router.post("/add", verifyTokenAdmin, uploadFile(), addIndustiralProperty)
 
 //UPDATE
 router.put("/:id", verifyTokenAuthorization, async (req, res) => {
@@ -45,6 +46,14 @@ router.get("/find/:country", async(req,res) =>{
         console.log(req.params.country);
         const Data = await IndustrialProperty.find({ urlCountry: req.params.country })
         console.log(Data);
+        res.status(200).json(Data)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+router.get("/findByUrl/:urlES", async(req,res) =>{
+    try {
+        const Data = await IndustrialProperty.findOne({ urlEs: req.params.urlES })
         res.status(200).json(Data)
     } catch (error) {
         res.status(500).json(error)
