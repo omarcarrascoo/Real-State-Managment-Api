@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const engine = require('ejs-mate')
 const path = require('path')
 const cors = require('cors')
+const bodyparse = require("body-parser")
 const dotenv = require("dotenv").config()
 
 //ROUTES PATHS
@@ -14,7 +15,6 @@ const provincesRoutes = require("./routes/province.routes")
 const citiesRoutes = require ("./routes/cities.routes")
 const categoriesRoutes = require("./routes/categories.routes")
 const industrialProperty = require("./routes/industialProperties.routes")
-const clientRoutes = require("./routes/client.routes")
 const clientEs = require("./routes/clientEs.routes")
 
 
@@ -25,11 +25,14 @@ app.use(cors({
     
 }))
 app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+app.use('/assets', express.static('public'));
+app.use(express.static(__dirname + '/assets'));
 // app.use(fileUplode());
 // app.use(express.static(__dirname + '/public'));
-// app.set('views', path.join(__dirname, 'views') )
-// app.engine('ejs', engine);
-// app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views') )
+app.engine('ejs', engine);
+app.set('view engine', 'ejs')
 
 //ROUTES
 app.use("/api/auth", authRoutes)
@@ -39,7 +42,7 @@ app.use("/api/provinces", provincesRoutes)
 app.use("/api/cities", citiesRoutes)
 app.use("/api/categories", categoriesRoutes)
 app.use("/api/industrialProperties", industrialProperty)
-app.use("/", clientRoutes)
+app.use("/", clientEs)
 app.use("/es/bienes-raices-industriales", clientEs)
 
 //CONECTION TO THE DATABASE USING MONGO

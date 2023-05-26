@@ -4,49 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienes Industriales | INDUSTRILUX</title>
-    <style>
-        body{
-            width: 90%;
-            text-align: center;
-            margin: 0 auto;
-
-        }
-    </style>
+    <title>Login - industrilux</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="headerContainer">
-            <a href="#">English</a>
-        </div>
-    </header>
-    <main>
-        <div class="containerHero">
-            <div class="logoHero">
-                <img src="" alt="Logo Inmobilux">
+    <main class="loginMain">
+        <div class="loginMainContainer">
+            <div class="loginImgSection">
+                <img style="max-width: 300px;" src="http://localhost:8000/images/INDUSTRYLUX.jpg" alt="Logo Industrilux">
             </div>
-            <div class="textHero">
-                <h1>INMOBILUX - MARKETING PARA BIENES RAÍCES ESPECIALES Y DE LUJO</h1>
-                <h2>TERRENOS - CASAS - DEPARTAMENTOS - OFICINAS - LOCALES COMERCIALES - BODEGAS, NAVES Y TERRENOS INDUSTRIALES</h2>
+            <div class="loginFormSection">
+                <h1 style="font-weight: 400;">Panel Administrativo Industrylux</h1>
+                <form action="api/auth/login" method="post" class="loginForm">
+                    <input type="text" name="email" id="user" placeholder="example@gmail.com">
+                    <input type="password" name="password" id="password" placeholder="Contraseña">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+                </form>
             </div>
-            <div style="display: flex; align-items: center; justify-content: center;"class="countries">
-                <% for (var i = 0; i < data.length; i++) { %>
-                    <a style="margin: 15px;" href="/es/bienes-raices-industriales/<%=data[i].urlCountry%>">
-                        <div class="country">
-                            <h2><%=data[i].countryName%></h2>
-                        </div>
-                    </a>
-               <% }%>
-            </div>
-            <p>INMOBILUX es una agencia inmobiliaria LUXURY enfocada a bienes raíces especiales y de lujo. Promovemos los mejores terrenos, casas, departamentos, oficinas corporativas, locales comerciales, bodegas y naves industriales en los mejores desarrollos inmobiliarios del mundo, a través de un marketing muy especial dirigido al mercado objetivo, ofreciendo un servicio personalizado y ético para los clientes del más alto poder adquisitivo.</p>
-            <p>Nuestras alianzas a nivel internacional, nos permiten tener acceso a clientes del segmento ELITE (empresarios, financieros, artistas, deportistas profesionales, etc.) y promover las mejores propiedades, para poner a su alcance posibilidades de inversión inmobiliaria en bienes raíces exclusivos y selectos de gran oportunidad y potencial de plusvalía.</p>
-            <p>Nuestro equipo está integrado por asesores profesionales, que ofrecen herramientas de marketing únicas para la promoción de bienes raíces: inteligencia de mercados, fotografía y video profesional, descripciones adecuadas, estrategia digital, servicios jurídicos, asesoría fiscal, notarios, gestores, valuadores, brokers hipotecarios, etc. para brindarles un servicio integral en todo el proceso de la compra venta, renta u operación que se realice de los bienes raíces.</p>
-            <p>Somos IMPULSORES e INTEGRADORES de proyectos inmobiliarios y operamos oficinas de corretaje en donde representamos propiedades y desarrollos con marca propia y la de los Desarrolladores, integrándonos como su brazo comercial y de marketing, con objeto de estudiar perfectamente el potencial del proyecto, llevando a cabo el benchmark y análisis de mercado para definir el target adecuado, medir la factibilidad comercial, maximizar la rentabilidad y convirtiéndonos en la ESTRUCTURA COMERCIAL del desarrollo, diseñando el modelo comercial adecuado, armando el equipo de ventas, coordinando los convenios de trabajo con otras agencias inmobiliarias a nivel mundial, implementando los tableros de control del canal de prospección, control de Información en CRM, monitoreo de los indicadores de conversión, etc. para ajustar continuamente las estrategias de marketing y lograr los objetivos de absorción, para asegurar el retorno de inversión.</p>
-            <p>Trabajamos de la mano con FONDOS DE INVERSIÓN nacionales y extranjeros para conseguir el financiamiento de los proyectos y tenemos una alianza estratégica con el Arq. Ismael Leyva para diseñar proyectos urbanísticos mixtos en México. Con su despacho, Ismael Leyva Architects PC (ILA), especializado en arquitectura, diseño de interiores y urbanismo, ha desarrollado más de 70 proyectos en la ciudad de Nueva York y ha proyectado algunos de los edificios más espectaculares del mundo.</p>
+            
         </div>
     </main>
-    <footer class="hero">
-        <p>Al hacer uso de esta página, acepto los <a href="#">Términos y Condiciones - Aviso Legal</a> y el <a href="#">Aviso de Privacidad</a> ©Copyright 2019 ®Marketing Staff Todos los Derechos Reservados</p>
-    </footer>
 </body>
 </html>

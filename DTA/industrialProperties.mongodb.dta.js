@@ -1,3 +1,4 @@
+const uploadFile = require('../middleware/uploadImage.js');
 const industrialPropertiesModel = require ('../models/industrialProperty.model.js');
 
 const findIndustrialProperty = async (data)=>{
@@ -8,7 +9,6 @@ const findIndustrialProperty = async (data)=>{
 const saveIndustrialProperty = async (indusatrialPropertyData) =>{
    const newIndustrialProperty = new industrialPropertiesModel(indusatrialPropertyData)
    const industrialPropertySaved = await newIndustrialProperty.save()
-   console.log(industrialPropertySaved)
    return(industrialPropertySaved)
 }
 

@@ -1,0 +1,65 @@
+<%- layout('layout/main.ejs')%>
+    <main class="max container-sm mt-30 flex-wrap" style="margin-top: 50px;">
+        <h1 style="margin-bottom: 20px;">Editar productos</h1>
+        <div class="d-flex  flex-wrap justify-content-around">
+            <% for (var i = 0; i < data.length; i++) { %>
+                <div class="card me-auto mt-30" style="width: 18rem; margin-bottom: 20px;">
+                    <img src="<%= data[i].productImg %>" class="card-img-top" alt="Imagen del Producto" style=" object-fit:cover; max-height: 300px; min-height: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= data[i].productName %></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">$<%= data[i].productPrice %></li>
+                        <li class="list-group-item">Stock: <%= data[i].productStock %></li>
+                        <li class="list-group-item"><%= data[i].productCategory %></li>
+                    </ul>
+                    
+                        <div class="card-body">
+                            
+                            <% if(user){%>
+                                <%if (user.username == "omar.carrasco15.16@gmail.com"){%>
+                                    <div class="card-body">
+                                        <form action="/updateProduct/<%=data[i]._id %>" method="get">
+                                            <input type="hidden" name="productName" value = "<%= data[i].productName %>" >
+                                            <button  class="btn btn-warning">Editar</button>
+                                        </form>
+                                        <form action="/deleteProduct/<%= data[i]._id %>" method="POST">
+                                            <button class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
+                                <%} %>
+                            <%} %>
+                            <form action="/addCart" method="POST">
+                                
+                                <% if (user) {%>
+                                    
+                                        <input type="hidden" name="username" value = "<%= user.username %>" >
+                                        <input type="hidden" name="productId" value = "<%= data[i]._id %>" >
+                                        <input type="hidden" name="productName" value = "<%= data[i].productName %>" >
+                                        <input type="hidden" name="productImg" value = "<%= data[i].productImg %>" >
+                                        <input type="hidden" name="productPrice" value = "<%= data[i].productPrice %>" >
+                                        <button  class="btn btn-succes">Agregar</button>
+                                        
+                                   <% } else { %>
+                                        <input type="hidden" name="productId" value = "<%= data[i]._id %>" >
+                                        <input type="hidden" name="productName" value = "<%= data[i].productName %>" >
+                                        <input type="hidden" name="productImg" value = "<%= data[i].productImg %>" >
+                                        <input type="hidden" name="productPrice" value = "<%=parseInt(data[i].productPrice ) %>" >
+                                        <button  class="btn btn-succes">Agregar</button>
+                                   <% } %>
+                               
+                            </form>
+                            <form action="/comments" method="post">
+                                <input type="hidden" name="productId" value = "<%= data[i]._id %>" >
+                                        <input type="hidden" name="productName" value = "<%= data[i].productName %>" >
+                                        <input type="hidden" name="productImg" value = "<%= data[i].productImg %>" >
+                                        <input type="hidden" name="productPrice" value = "<%= data[i].productPrice %>" >
+                                        <button  class="btn btn-succes">Ver Producto</button>
+                            </form>
+                        </div>
+                    
+                </div> 
+              <% } %>
+              
+        </div>
+    </main>

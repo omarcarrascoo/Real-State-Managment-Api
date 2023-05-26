@@ -1,0 +1,43 @@
+<%- layout('layout/main.ejs')%>
+    <main class="max container-sm mt-30 flex-wrap" style="margin-top: 50px;">
+        <div class="container-sm d-flex justify-content-center align-items-center flex-column">
+            <h1><%=data.productName%></h1>
+            <img src="<%=data.productImg%>" alt="">
+            <p><%=data.productPrice%></p>
+        </div>
+        <div class="container">
+            <hr>
+            
+            <%if (user) {%>
+                <form onsubmit="return addMessage(this)">
+                    <input type="hidden" name="author" id="author" value="<%=user.username%>">
+                    <input type="hidden" name="productName" id="productName" value="<%=data.productName%>" >
+                    <label for="message">Agregar Comentario</label>
+                    <input type="text" name="texto" id="texto">
+                    <button class="btn btn-dark">Enviar</button>
+                </form>
+               <% } else {%>
+                    <a href="/login" class="btn btn-succes">Iniciar sesion para comentar</a>
+                <%}%>
+            <hr>
+            <h4 class="text-center">Comentarios del producto</h4>
+            <br>
+            <div id="menssages">
+                <% if(comments){%>
+                    <% 
+                        console.log(comments)
+                        comments.map(function(comment) { %>
+                        <li class="d-flex">
+                          <p><b><%= comment.author %>:</b></p>
+                          <p><%= comment.text %></p>
+                        </li>
+                      <% }); %>
+                <%}else{%>
+                    <p>No hay comentarios del producto</p>
+                <%} %>
+                
+            </div>
+            <hr>
+        </div>
+    </main>
+    <script src="assets/js/script.js"></script>

@@ -1,0 +1,14 @@
+
+    <%- layout('layout/main.ejs')%>
+<div class="container container-sm" style="margin-top: 30px;">
+    <h1>Informacion de procesos</h1>
+<p>Argumentos de entrada: <%- process.argv%></p>
+
+<p>Sistema Operativo: <%- process.platform%></p>
+<p>Version de node: <%- process.version %> </p>
+<p>Memoria reservada: <%-process.memoryUsage()%></p>
+<p>Path de ejecución: <%- process.cwd()%></p>
+<p>Process id: <%-process.pid%> </p>
+<p>Puerto: <%-PORT%></p>
+
+</div>

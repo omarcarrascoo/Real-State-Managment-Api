@@ -1,0 +1,24 @@
+<%- layout('layout/main.ejs')%>
+    
+    <div class="container container-sm d-flex justify-content-center flex-column align-items-center flex- min-vh-100">
+        <h1>Registrarse </h1>
+        <form class="w-25" action="/signup" method="post">
+            <div class="mb-3">
+              <label for="username" class="form-label">Usuario</label>
+              <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Constraseña</label>
+              <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <button type="submit" class="btn btn-primary ">Registrarse</button>
+                <p style="margin: 0 0 0 50px; padding:0; font-size: 14px; ">Ya tienes cuenta <a href="/login">Iniciar Sesion</a></p>
+            </div>
+          </form>
+          <% if (signupMessage) { %>
+            <div style="margin-top: 20px; color:rgb(250, 189, 83)" class="mensaje container container-sm d-flex justify-content-center flex-column align-items-center">
+              <%=signupMessage%>
+            </div>
+          <% } %>
+    </div>

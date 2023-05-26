@@ -8,19 +8,17 @@ const { verifyTokenAuthorization } = require("./verifyToken.routes")
 //CREATE
 router.post("/add", verifyTokenAdmin, async (req, res)=>{
     const countryExist = await Country.findOne({countryName: req.body.countryName})
-    console.log(countryExist)
     if (countryExist) {
         res.status(409).json("Country alrady in existance")
     } else {
-        const {countryFlag} = req.files;
-        const imageSavingPath = path.join(__dirname, '../assets/imgs/') 
-        console.log(countryFlag)
+        // const {countryFlag} = req.files;
+        // const imageSavingPath = path.join(__dirname, '../assets/imgs/') 
+        // console.log(countryFlag)
         const newCountry = new Country(req.body);
 
-        if (!countryFlag) return res.status(400).json("Necesarly to upload image!")
+        // if (!countryFlag) return res.status(400).json("Necesarly to upload image!")
         try {
             const savedCountry = await newCountry.save();
-            countryFlag.mv(imageSavingPath + countryFlag.name)
             res.status(200).json(savedCountry)
         } catch (error) {
             res.status(500).json(error)
@@ -34,11 +32,12 @@ router.put("/:id", verifyTokenAuthorization, async (req, res)=>{
     // const {countryFlag} = req.files;
     // console.log(countryFlag);
     // if (!countryFlag) return res.status(400).json("Necesarly to upload image!")
+    console.log(req.body);
     try {
         const updatedCountry = await Country.findByIdAndUpdate(req.params.id,{$set: 
             req.body
         });
-
+        
         res.status(200).json(updatedCountry)
         
     } catch (error) {

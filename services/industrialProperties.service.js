@@ -4,7 +4,6 @@ const { dtoIndustriaPropertyName } = require("../DTO/industiralProperties.dto")
 const chekIfIndustrialPropertyExistByName = async (data) =>{
     try {
         const propertyExist = await dtoIndustriaPropertyName(data)
-        console.log(propertyExist)
         if(propertyExist) {
             return propertyExist
         }else{
@@ -17,8 +16,8 @@ const chekIfIndustrialPropertyExistByName = async (data) =>{
 }
 const createIndustrialProperty = async (data)=>{
     try {
+        console.log(data);
         const industrialPorpertyCreated = await saveIndustrialProperty (data);
-        console.log(industrialPorpertyCreated);
         return (industrialPorpertyCreated);
     } catch (error) {
         return error

@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken")
+const sharp = require('sharp');
+
 
 const verifyToken = (req,res,next) =>{
     const authHeader = req.headers.token

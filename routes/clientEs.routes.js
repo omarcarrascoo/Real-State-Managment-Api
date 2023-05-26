@@ -1,5 +1,6 @@
 const Country = require("../models/country.model")
 const industrialPropertyModel = require("../models/industrialProperty.model")
+const { verifyTokenAuthorization } = require("./verifyToken.routes")
 const router = require("express").Router()
 
 
@@ -11,14 +12,14 @@ router.get("/", async (req, res) =>{
        res.status(500).json(" Error en index") 
     }
 })
-router.get("/:country"), async (req,res) => {
+router.get("/panel", async (req, res) =>{
     try {
-        const properties = await industrialPropertyModel.find({country: req.params.country})
-        res.render('properties', {data: properties})
+        res.render('properties')
     } catch (error) {
-        
+        console.log(error);
+        res.redirect('/')
     }
-}
+})
 
 
 

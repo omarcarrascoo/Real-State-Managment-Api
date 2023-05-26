@@ -59,6 +59,22 @@ router.get("/findByUrl/:urlES", async(req,res) =>{
         res.status(500).json(error)
     }
 })
+router.get("/findByProvince/:urlProvince", async(req,res) =>{
+    try {
+        const Data = await IndustrialProperty.find({ urlProvince: req.params.urlProvince })
+        res.status(200).json(Data)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+router.get("/findByProvinceAndP1/:p1", async(req,res) =>{
+    try {
+        const Data = await IndustrialProperty.find({ urlProvince: req.params.urlProvince })
+        res.status(200).json(Data)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 // router.get("/find/:id", async (req, res) => {
 //     try {
 //         const industrialProperty = await IndustrialProperty.findById(req.params.id)

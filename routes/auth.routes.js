@@ -25,7 +25,7 @@ router.post("/register", async (req, res)=>{
 router.post("/login", async (req, res)=>{
     try{
         const user = await User.findOne({email: req.body.email});
-
+        
         !user && res.status(401).json("User doesn't exisist!")
 
         const hashedPass = CryptoJS.AES.decrypt(user.password, process.env.PASS_SEC);
